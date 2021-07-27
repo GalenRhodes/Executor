@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ExecutorTests" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" editBeforeRun="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$(SRCROOT)" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Executor" TARGET_NAME="ExecutorTests" CONFIG_NAME="Debug" SCHEME_NAME="ExecutorTests" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier" LOCATION_SCENARIO_TYPE="1" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" TEST_CLASS="ExecutorTests" TEST_METHOD="testComplete" TEST_MODE="SUITE_TEST" XCODE_TESTS_HASH_CODE="1876601739">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

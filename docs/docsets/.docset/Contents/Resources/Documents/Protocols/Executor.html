@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Executor Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Executor" class="dashAnchor"></a>
+
+    <a title="Executor Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Executor©
+        </a>
+         (2% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/GalenRhodes/Executor">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html"> Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Executor Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnyExecutor.html">AnyExecutor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Future.html">Future</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ExecutorError.html">ExecutorError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FutureState.html">FutureState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Collection.html">Collection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CancelableFuture.html">CancelableFuture</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Executor.html">Executor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Executors.html">Executors</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/Callable.html">Callable</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
+            <h1>Executor</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Executor</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                </div>
+              </div>
+            
+              <div class="slightly-smaller">
+                <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L21-L35">Show on GitHub</a>
+              </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP1RQa"></a>
+                    <a name="//apple_ref/swift/Alias/R" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP1RQa">R</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">R</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP8isActiveSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isActive" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP8isActiveSbvp">isActive</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isActive</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP8shutdownyyF"></a>
+                    <a name="//apple_ref/swift/Method/shutdown()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP8shutdownyyF">shutdown()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">shutdown</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP12executeAsync8callableAA6FutureCy1RQzGAhA010CancelableE0_pzKc_tKF"></a>
+                    <a name="//apple_ref/swift/Method/executeAsync(callable:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP12executeAsync8callableAA6FutureCy1RQzGAhA010CancelableE0_pzKc_tKF">executeAsync(callable:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">executeAsync</span><span class="p">(</span><span class="nv">callable</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases/Callable.html">Callable</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Future.html">Future</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP11executeSync8callableAA6FutureCy1RQzGAhA010CancelableE0_pzKc_tKF"></a>
+                    <a name="//apple_ref/swift/Method/executeSync(callable:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP11executeSync8callableAA6FutureCy1RQzGAhA010CancelableE0_pzKc_tKF">executeSync(callable:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">executeSync</span><span class="p">(</span><span class="nv">callable</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases/Callable.html">Callable</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Future.html">Future</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP12executeAsync9callablesSayAA6FutureCy1RQzGGSayAhA010CancelableE0_pzKcG_tKF"></a>
+                    <a name="//apple_ref/swift/Method/executeAsync(callables:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP12executeAsync9callablesSayAA6FutureCy1RQzGGSayAhA010CancelableE0_pzKcG_tKF">executeAsync(callables:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">executeAsync</span><span class="p">(</span><span class="nv">callables</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases/Callable.html">Callable</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/Future.html">Future</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8ExecutorAAP11executeSync9callablesSayAA6FutureCy1RQzGGSayAhA010CancelableE0_pzKcG_tKF"></a>
+                    <a name="//apple_ref/swift/Method/executeSync(callables:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8ExecutorAAP11executeSync9callablesSayAA6FutureCy1RQzGGSayAhA010CancelableE0_pzKcG_tKF">executeSync(callables:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">executeSync</span><span class="p">(</span><span class="nv">callables</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases/Callable.html">Callable</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/Future.html">Future</a></span><span class="o">&lt;</span><span class="kt"><a href="../Protocols/Executor.html#/s:8ExecutorAAP1RQa">R</a></span><span class="o">&gt;</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executor.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-07-27)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
