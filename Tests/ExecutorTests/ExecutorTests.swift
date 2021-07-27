@@ -78,4 +78,11 @@ class ExecutorTests: XCTestCase {
 //        self.measure {
 //        }
 //    }
+
+    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS))
+        public static var allTests: [(String, (ExecutorTests) -> () throws -> Void)] {
+            [ ("ExecutorTests", testComplete),
+              ("ExecutorTests", testCancel), ]
+        }
+    #endif
 }
