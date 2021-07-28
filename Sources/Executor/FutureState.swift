@@ -18,10 +18,28 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+/*==============================================================================================================*/
+/// The current status of the `Future`.
+///
 public enum FutureState {
+    /*==========================================================================================================*/
+    /// The `Future` has been scheduled to run at some point in the future.
+    ///
     case Scheduled
+    /*==========================================================================================================*/
+    /// The `Future` is currently executing.
+    ///
     case Executing
+    /*==========================================================================================================*/
+    /// The `Future` has successfully finished executing.
+    ///
     case Finished
+    /*==========================================================================================================*/
+    /// The `Future` has finished executing with an error.
+    ///
     case Error
+    /*==========================================================================================================*/
+    /// The `Future` was canceled either before it was executed or during execution.
+    ///
     case Canceled
 }

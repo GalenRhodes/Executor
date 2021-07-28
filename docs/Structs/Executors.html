@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
-    
+
     <script src="../js/lunr.min.js" defer></script>
     <script src="../js/typeahead.jquery.js" defer></script>
     <script src="../js/jazzy.search.js" defer></script>
@@ -23,22 +23,22 @@
         <a class="header-link" href="../index.html">
           Executor©
         </a>
-         (2% documented)
+         (93% documented)
       </p>
-    
+
       <p class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
       </p>
-    
+
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/GalenRhodes/Executor">
             <img class="header-icon" src="../img/gh.png"/>
             View on GitHub
           </a>
         </p>
-    
+
     </header>
 
     <p class="breadcrumbs">
@@ -116,14 +116,14 @@
             <h1>Executors</h1>
               <div class="declaration">
                 <div class="language">
-                  
+
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Executors</span></code></pre>
 
                 </div>
               </div>
-            
+
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L21-L27">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L21-L51">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -145,7 +145,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Creates and returns an <code><a href="../Protocols/Executor.html">Executor</a></code> that uses a fixed number of thread to execute the <code><a href="../Typealiases/Callable.html">Callable</a></code>s.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -155,8 +156,32 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of threads to use. Must be greater than or equal to 1. No more than this
+               many threads will be created.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code><a href="../Protocols/Executor.html">Executor</a></code>.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -174,7 +199,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Creates and returns an <code><a href="../Protocols/Executor.html">Executor</a></code> that creates a single
+<code><a href="https://developer.apple.com/documentation/dispatch/dispatchqueue/attributes/2300052-concurrent">concurrent</a></code>
+<code><a href="https://developer.apple.com/documentation/dispatch/dispatchqueue">DispatchQueue</a></code> to execute
+the <code><a href="../Typealiases/Callable.html">Callable</a></code>s.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -184,8 +213,12 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code><a href="../Protocols/Executor.html">Executor</a></code>.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L39">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -203,7 +236,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The same as <code>GCDExecutor</code> except that the
+<code><a href="https://developer.apple.com/documentation/dispatch/dispatchqueue">DispatchQueue</a></code> will not be
+a
+<code><a href="https://developer.apple.com/documentation/dispatch/dispatchqueue/attributes/2300052-concurrent">concurrent</a></code>
+queue.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -213,8 +251,12 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The <code><a href="../Protocols/Executor.html">Executor</a></code>.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Executor/blob/master/Sources/Executor/Executors.swift#L50">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -227,7 +269,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-07-27)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" rel="external" target="_blank">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-07-28)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -18,12 +18,28 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+/*==============================================================================================================*/
+/// The shared private conditional lock(s).
+///
 fileprivate let sharedLock: Conditional = Conditional()
 
+/*==============================================================================================================*/
+/// A `Callable` closure gets wrapped inside an instance of `Future` which controls it's execution and handles
+/// it's result or error.
+///
 open class Future<R>: CancelableFuture {
     //@f:0
+    /*==========================================================================================================*/
+    /// The `Callable`.
+    ///
     public   let callable:    Callable<R>
+    /*==========================================================================================================*/
+    /// Returns `true` if the `Future` has been canceled.
+    ///
     public   var isCanceled:  Bool        { lock.withLock { state == .Canceled } }
+    /*==========================================================================================================*/
+    /// The state of the Future.
+    ///
     public   var futureState: FutureState { lock.withLock { state } }
     internal var state:       FutureState = .Scheduled
     private  var result:      R?          = nil
@@ -38,6 +54,14 @@ open class Future<R>: CancelableFuture {
 
     deinit { cancel() }
 
+    /*==========================================================================================================*/
+    /// Get the results returned from the Future executing the `Callable`. Calling this method will block until
+    /// the `Future` has been executed and either completed, thrown an error, or been canceled.
+    /// 
+    /// - Returns: The result from the `Future`'s execution of the `Callable`.
+    /// - Throws: Any error thrown by the `Callable` or `ExecutorError.CallableCanceled` if the `Future` was
+    ///           canceled.
+    ///
     public func getResult() throws -> R {
         try lock.withLock {
             while value(state, isOneOf: .Scheduled, .Executing) { lock.broadcastWait() }
@@ -48,8 +72,15 @@ open class Future<R>: CancelableFuture {
         }
     }
 
+    /*==========================================================================================================*/
+    /// Blocks the calling thread until the `Future` was completed execution or been canceled.
+    ///
     public func join() { lock.withLock { while value(state, isOneOf: .Scheduled, .Executing) { lock.broadcastWait() } } }
 
+    /*==========================================================================================================*/
+    /// Cancels the `Future`. If the `Future` has already completed or already been canceled then calling this
+    /// method does nothing.
+    ///
     public func cancel() {
         lock.withLock {
             guard value(state, isOneOf: .Scheduled, .Executing) else { return }
@@ -81,7 +112,18 @@ open class Future<R>: CancelableFuture {
 }
 
 extension Collection {
+    /*==========================================================================================================*/
+    /// Blocks the calling thread until ALL of the `Future`s in the collection have completed execution or been
+    /// canceled.
+    ///
     @inlinable public func join<R>() where Element == Future<R> {
         forEach { $0.join() }
+    }
+
+    /*==========================================================================================================*/
+    /// Cancels ALL of the Futures in this collection.
+    ///
+    @inlinable public func cancel<R>() where Element == Future<R> {
+        forEach { $0.cancel() }
     }
 }

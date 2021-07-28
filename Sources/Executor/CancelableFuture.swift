@@ -18,8 +18,19 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+/*==============================================================================================================*/
+/// When the `Callable` is executed an instance of an object that implements this protocol will be passed to it as
+/// it's only argument. The `Callable` closure can use this to monitor the `isCanceled` flag to see if it should
+/// stop execution by throwing the error `ExecutorError.CallableCanceled`.
+///
 public protocol CancelableFuture {
+    /*==========================================================================================================*/
+    /// Returns `true` if the `Future` was canceled and, as a result, the `Callable` should cease execution.
+    ///
     var isCanceled: Bool { get }
 
+    /*==========================================================================================================*/
+    /// Cancle the `Future`.
+    ///
     func cancel()
 }

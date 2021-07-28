@@ -18,4 +18,9 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
+/*==============================================================================================================*/
+/// Type alias for the closure passed to the `Executor`. The single parameter will be an instance of an object
+/// that implements the `CancelableFuture` protocol to allow the closure to check to see if the `Future` was
+/// canceled and, as a result, it should cease execution.
+///
 public typealias Callable<R> = (inout CancelableFuture) throws -> R

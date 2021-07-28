@@ -19,9 +19,33 @@ import CoreFoundation
 import Rubicon
 
 public struct Executors {
+    /*==========================================================================================================*/
+    /// Creates and returns an `Executor` that uses a fixed number of thread to execute the `Callable`s.
+    /// 
+    /// - Parameter count: The number of threads to use. Must be greater than or equal to 1. No more than this
+    ///                    many threads will be created.
+    /// - Returns: The `Executor`.
+    ///
     public static func FixedSizeThreadPoolExecutor<R>(count: Int) -> AnyExecutor<R> { _FixedSizeThreadPoolExecutor<R>(count: count) }
 
+    /*==========================================================================================================*/
+    /// Creates and returns an `Executor` that creates a single
+    /// <code>[concurrent](https://developer.apple.com/documentation/dispatch/dispatchqueue/attributes/2300052-concurrent)</code>
+    /// <code>[DispatchQueue](https://developer.apple.com/documentation/dispatch/dispatchqueue)</code> to execute
+    /// the `Callable`s.
+    /// 
+    /// - Returns: The `Executor`.
+    ///
     public static func GCDExecutor<R>() -> AnyExecutor<R> { _GCDExecutor<R>() }
 
+    /*==========================================================================================================*/
+    /// The same as `GCDExecutor` except that the
+    /// <code>[DispatchQueue](https://developer.apple.com/documentation/dispatch/dispatchqueue)</code> will not be
+    /// a
+    /// <code>[concurrent](https://developer.apple.com/documentation/dispatch/dispatchqueue/attributes/2300052-concurrent)</code>
+    /// queue.
+    /// 
+    /// - Returns: The `Executor`.
+    ///
     public static func SingleThreadExecutor<R>() -> AnyExecutor<R> { _SingleThreadExecutor<R>() }
 }

@@ -19,12 +19,17 @@ import CoreFoundation
 import Rubicon
 
 public enum ExecutorError: Error {
-    case InternalError
+    /*==========================================================================================================*/
+    /// This should not ever happen.
+    ///
     case NoResults
+    /*==========================================================================================================*/
+    /// Thrown if you attempt to schedule a Callable on an Executor that is not active.
+    ///
     case ExecutorNotRunning
-    case CallableAlreadyCalled
-    case CallableNotYetScheduled
-    case CallableAlreadyOwned
+    /*==========================================================================================================*/
+    /// Thrown either by a Callable that detects it's Future was canceled during execution or when attempting to
+    /// get the results from a future that was canceled.
+    ///
     case CallableCanceled
-    case CallableStillRunning
 }
