@@ -7,17 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D59A76AE486DD0BB49B0 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA000554BA00925FDB57 /* Collection.swift */; };
 		1117D5DCAE21783D40C0C52A /* Callable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE9A361B55778304E6CC /* Callable.swift */; };
 		1117D7B591F737B322C9606C /* Executors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D70055CF1141C0DCAD90 /* Executors.swift */; };
 		1117D8283AA34E224E6BB5BA /* Executor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D790D6AFBF0E227225BD /* Executor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D8AC6D0156EAC03CD888 /* _SingleThreadExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D82654844A87A16F14E9 /* _SingleThreadExecutor.swift */; };
 		1117D8C38A108A4E403595F2 /* FutureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA0A9CE3FD14700E8334 /* FutureState.swift */; };
-		1117DAB340ABA6A358A06B3C /* CancelableFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0827E7AB7960B91C860 /* CancelableFuture.swift */; };
+		1117DAB340ABA6A358A06B3C /* Cancelable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0827E7AB7960B91C860 /* Cancelable.swift */; };
 		1117DAB6D72238F40083F95E /* ExecutorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D8D396748836BFA3C71A /* ExecutorError.swift */; };
 		1117DBC934BAEE13FC20B9DD /* _FixedSizeThreadPoolExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0193ED21C675385A88F /* _FixedSizeThreadPoolExecutor.swift */; };
 		1117DC2E0A4121B986A3DA98 /* Executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D95E471B6A22DE80151F /* Executor.swift */; };
 		1117DCBF29AC47EF1B6FB372 /* _GCDExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB8D35D1A877CA57F114 /* _GCDExecutor.swift */; };
 		1117DD3F98E6FB5311FE69CA /* AnyExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB9A73F37E6AFC9125A2 /* AnyExecutor.swift */; };
+		1117DF0EEBCAE5D6E0B6D830 /* _ExecutorBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBFAA850D921060950D4 /* _ExecutorBase.swift */; };
+		1117DFAE9CEA25981AF41991 /* LockPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9788DBBF51CC417B554 /* LockPool.swift */; };
 		1117DFE4A7E775442C5EC6F1 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD5F2882AE1708B22A72 /* Future.swift */; };
 		83CD904626AAEEE600EC0533 /* Executor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CD903C26AAEEE600EC0533 /* Executor.framework */; };
 		83CD904B26AAEEE600EC0533 /* ExecutorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CD904A26AAEEE600EC0533 /* ExecutorTests.swift */; };
@@ -50,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		1117D0193ED21C675385A88F /* _FixedSizeThreadPoolExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _FixedSizeThreadPoolExecutor.swift; sourceTree = "<group>"; };
-		1117D0827E7AB7960B91C860 /* CancelableFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelableFuture.swift; sourceTree = "<group>"; };
+		1117D0827E7AB7960B91C860 /* Cancelable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cancelable.swift; sourceTree = "<group>"; };
 		1117D2C0E56ED5D2557F0C5A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1117D47D1F49BEBEE3067F5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D6127E146060910673B6 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -60,11 +63,14 @@
 		1117D8D396748836BFA3C71A /* ExecutorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutorError.swift; sourceTree = "<group>"; };
 		1117D92F9A89D86BB0FB2FCD /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		1117D95E471B6A22DE80151F /* Executor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executor.swift; sourceTree = "<group>"; };
+		1117D9788DBBF51CC417B554 /* LockPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockPool.swift; sourceTree = "<group>"; };
 		1117D9A3CADA0F9DB9655540 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		1117DA000554BA00925FDB57 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		1117DA0A9CE3FD14700E8334 /* FutureState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureState.swift; sourceTree = "<group>"; };
 		1117DB21C4EEE6F446B82743 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1117DB8D35D1A877CA57F114 /* _GCDExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _GCDExecutor.swift; sourceTree = "<group>"; };
 		1117DB9A73F37E6AFC9125A2 /* AnyExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyExecutor.swift; sourceTree = "<group>"; };
+		1117DBFAA850D921060950D4 /* _ExecutorBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _ExecutorBase.swift; sourceTree = "<group>"; };
 		1117DCD75AB727DAC30126EF /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		1117DD5F2882AE1708B22A72 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		1117DE9A361B55778304E6CC /* Callable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Callable.swift; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 				1117DB8D35D1A877CA57F114 /* _GCDExecutor.swift */,
 				1117D82654844A87A16F14E9 /* _SingleThreadExecutor.swift */,
 				1117D0193ED21C675385A88F /* _FixedSizeThreadPoolExecutor.swift */,
+				1117DBFAA850D921060950D4 /* _ExecutorBase.swift */,
 			);
 			path = Executors;
 			sourceTree = "<group>";
@@ -150,13 +157,15 @@
 				1117D20468DE815D47E08D94 /* Other */,
 				1117D8D396748836BFA3C71A /* ExecutorError.swift */,
 				1117DE9A361B55778304E6CC /* Callable.swift */,
-				1117D0827E7AB7960B91C860 /* CancelableFuture.swift */,
+				1117D0827E7AB7960B91C860 /* Cancelable.swift */,
 				1117DD5F2882AE1708B22A72 /* Future.swift */,
 				1117D95E471B6A22DE80151F /* Executor.swift */,
 				1117D47B3B10C9E9AA845D1F /* Executors */,
 				1117D70055CF1141C0DCAD90 /* Executors.swift */,
 				1117DA0A9CE3FD14700E8334 /* FutureState.swift */,
 				1117DB9A73F37E6AFC9125A2 /* AnyExecutor.swift */,
+				1117D9788DBBF51CC417B554 /* LockPool.swift */,
+				1117DA000554BA00925FDB57 /* Collection.swift */,
 			);
 			path = Executor;
 			sourceTree = "<group>";
@@ -350,7 +359,7 @@
 			files = (
 				1117DAB6D72238F40083F95E /* ExecutorError.swift in Sources */,
 				1117D5DCAE21783D40C0C52A /* Callable.swift in Sources */,
-				1117DAB340ABA6A358A06B3C /* CancelableFuture.swift in Sources */,
+				1117DAB340ABA6A358A06B3C /* Cancelable.swift in Sources */,
 				1117DFE4A7E775442C5EC6F1 /* Future.swift in Sources */,
 				1117DC2E0A4121B986A3DA98 /* Executor.swift in Sources */,
 				1117DCBF29AC47EF1B6FB372 /* _GCDExecutor.swift in Sources */,
@@ -359,6 +368,9 @@
 				1117D7B591F737B322C9606C /* Executors.swift in Sources */,
 				1117D8C38A108A4E403595F2 /* FutureState.swift in Sources */,
 				1117DD3F98E6FB5311FE69CA /* AnyExecutor.swift in Sources */,
+				1117DFAE9CEA25981AF41991 /* LockPool.swift in Sources */,
+				1117D59A76AE486DD0BB49B0 /* Collection.swift in Sources */,
+				1117DF0EEBCAE5D6E0B6D830 /* _ExecutorBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

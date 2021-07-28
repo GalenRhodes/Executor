@@ -19,15 +19,10 @@ import CoreFoundation
 import Rubicon
 
 /*==============================================================================================================*/
-/// The shared private conditional lock(s).
-///
-fileprivate let sharedLock: Conditional = Conditional()
-
-/*==============================================================================================================*/
 /// A `Callable` closure gets wrapped inside an instance of `Future` which controls it's execution and handles
 /// it's result or error.
 ///
-open class Future<R>: CancelableFuture {
+public class Future<R>: Cancelable {
     //@f:0
     /*==========================================================================================================*/
     /// The `Callable`.
@@ -36,7 +31,7 @@ open class Future<R>: CancelableFuture {
     /*==========================================================================================================*/
     /// Returns `true` if the `Future` has been canceled.
     ///
-    public   var isCanceled:  Bool        { lock.withLock { state == .Canceled } }
+    public   var isCancelled:  Bool       { lock.withLock { state == .Canceled } }
     /*==========================================================================================================*/
     /// The state of the Future.
     ///
@@ -48,11 +43,14 @@ open class Future<R>: CancelableFuture {
     //@f:1
 
     init(callable: @escaping Callable<R>) {
-        self.lock = sharedLock
+        self.lock = getSharedLock()
         self.callable = callable
     }
 
-    deinit { cancel() }
+    deinit {
+        cancel()
+        releaseSharedLock(lock)
+    }
 
     /*==========================================================================================================*/
     /// Get the results returned from the Future executing the `Callable`. Calling this method will block until
@@ -88,14 +86,28 @@ open class Future<R>: CancelableFuture {
         }
     }
 
-    func execute() {
+    /*==========================================================================================================*/
+    /// DO NOT CALL THIS METHOD DIRECTLY!!!!! This method should only be called by the `Executor` to execute the
+    /// scheduled `Callable`.
+    ///
+    public func execute() {
+        var c: Cancelable = self
+        execute(cancelable: &c)
+    }
+
+    /*==========================================================================================================*/
+    /// DO NOT CALL THIS METHOD DIRECTLY!!!!! This method should only be called by the `Executor` to execute the
+    /// scheduled `Callable`.
+    /// 
+    /// - Parameter cancelable: The object to monitor for cancelability.
+    ///
+    public func execute(cancelable: inout Cancelable) {
         lock.withLock {
             guard state == .Scheduled else { return }
             state = .Executing
         }
         do {
-            var c: CancelableFuture = self
-            result = try callable(&c)
+            result = try callable(&cancelable)
             lock.withLock { state = .Finished }
         }
         catch ExecutorError.CallableCanceled {
@@ -108,22 +120,5 @@ open class Future<R>: CancelableFuture {
                 state = .Error
             }
         }
-    }
-}
-
-extension Collection {
-    /*==========================================================================================================*/
-    /// Blocks the calling thread until ALL of the `Future`s in the collection have completed execution or been
-    /// canceled.
-    ///
-    @inlinable public func join<R>() where Element == Future<R> {
-        forEach { $0.join() }
-    }
-
-    /*==========================================================================================================*/
-    /// Cancels ALL of the Futures in this collection.
-    ///
-    @inlinable public func cancel<R>() where Element == Future<R> {
-        forEach { $0.cancel() }
     }
 }

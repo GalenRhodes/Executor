@@ -10,7 +10,7 @@ import Rubicon
 @testable import Executor
 
 class ExecutorTests: XCTestCase {
-    typealias C = (inout CancelableFuture) throws -> Int
+    typealias C = (inout Cancelable) throws -> Int
 
     override func setUpWithError() throws {
     }
@@ -35,18 +35,18 @@ class ExecutorTests: XCTestCase {
         let time: PGTimeT = PGTimeT(seconds * 1_000_000_000.0)
 
         for i in (0 ..< count) {
-            ar <+ { (c: inout CancelableFuture) throws -> Int in
+            ar <+ { (c: inout Cancelable) throws -> Int in
                 var value:  Int     = 0
                 let stopAt: PGTimeT = getSysTime(delta: time)
                 var now:    PGTimeT = getSysTime()
 
-                while now < stopAt && !c.isCanceled {
+                while now < stopAt && !c.isCancelled {
                     let x = Int.random(in: 1 ..< 5)
                     value += x
                     now = getSysTime()
                 }
 
-                if c.isCanceled {
+                if c.isCancelled {
                     print("\(i + 1) canceled!!!!!")
                     throw ExecutorError.CallableCanceled
                 }

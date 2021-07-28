@@ -1,9 +1,9 @@
 /*****************************************************************************************************************************//**
  *     PROJECT: Executor
- *    FILENAME: _GCDExecutor.swift
+ *    FILENAME: LockPool.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: July 27, 2021
+ *        DATE: July 28, 2021
  *
   * Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided
  * that the above copyright notice and this permission notice appear in all copies.
@@ -18,28 +18,37 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-class _GCDExecutor<R>: _ExecutorBase<R> {
-    private lazy var queue: DispatchQueue = getQueue()
-    private var current: [Future<R>] = []
+class LockPoolItem {
+    let lock:     Conditional = Conditional()
+    var useCount: Int         = 0
+}
 
-    override func localShutdown() {
-        for f in current { f.cancel() }
-        current.removeAll()
+fileprivate let MaxLocks: Int            = 100
+fileprivate var lockIndx: Int            = 0
+fileprivate var lockPool: [LockPoolItem] = []
+fileprivate let lockLock: MutexLock      = MutexLock()
+
+func getSharedLock() -> Conditional {
+    lockLock.withLock {
+        let idx = nextLockIndex()
+        while idx >= lockPool.count  { lockPool <+ LockPoolItem() }
+        let lpi = lockPool[idx]
+        lpi.useCount += 1
+        return lpi.lock
     }
+}
 
-    func getQueue() -> DispatchQueue { DispatchQueue(label: uuid, qos: .userInitiated, attributes: [ .concurrent ], autoreleaseFrequency: .workItem) }
-
-    override func exec(callable c: @escaping Callable<R>) -> Future<R> {
-        let f = Future<R>(callable: c)
-        current <+ f
-        queue.async {
-            f.execute()
-            self.remove(f)
-        }
-        return f
+func releaseSharedLock(_ lock: Conditional) {
+    lockLock.withLock {
+        guard let lpi = lockPool.first(where: { $0.lock === lock }) else { return }
+        lpi.useCount -= 1
+        lockPool.removeAll { $0.useCount <= 0 }
+        if lockIndx >= lockPool.count { lockIndx = 0 }
     }
+}
 
-    private func remove(_ future: Future<R>) { lock.withLock { current.removeAll { $0 === future } } }
-
-    static func == (lhs: _GCDExecutor, rhs: _GCDExecutor) -> Bool { lhs === rhs }
+fileprivate func nextLockIndex() -> Int {
+    let i = lockIndx
+    lockIndx = ((lockIndx + 1) % MaxLocks)
+    return i
 }

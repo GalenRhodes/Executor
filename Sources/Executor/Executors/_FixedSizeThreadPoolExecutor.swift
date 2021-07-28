@@ -18,10 +18,9 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-class _FixedSizeThreadPoolExecutor<R>: AnyExecutor<R> {
+class _FixedSizeThreadPoolExecutor<R>: _ExecutorBase<R> {
     private let count:   Int
     private var items:   [Future<R>] = []
-    private var current: [Future<R>] = []
     private var threads: [ExThread]  = []
 
     init(count: Int) {
@@ -43,9 +42,8 @@ class _FixedSizeThreadPoolExecutor<R>: AnyExecutor<R> {
     }
 
     override func localShutdown() {
-        current.forEach { $0.cancel() }
         items.forEach { $0.cancel() }
-        current.removeAll()
+        threads.forEach { $0.cancel() }
         items.removeAll()
         threads.removeAll()
     }
@@ -54,21 +52,15 @@ class _FixedSizeThreadPoolExecutor<R>: AnyExecutor<R> {
         try lock.withLock {
             while activeState && items.isEmpty { lock.broadcastWait() }
             guard activeState else { throw InternalError() }
-            guard let i = items.popFirst() else { throw InternalError() }
-            current <+ i
-            return i
+            return items.popFirst()!
         }
-    }
-
-    private func removeItem(_ item: Future<R>) {
-        lock.withLock { current.removeAll { $0 === item } }
     }
 
     private struct InternalError: Error {}
 
     static func == (lhs: _FixedSizeThreadPoolExecutor, rhs: _FixedSizeThreadPoolExecutor) -> Bool { lhs === rhs }
 
-    private class ExThread: Thread {
+    private class ExThread: Thread, Cancelable {
         private weak var owner: _FixedSizeThreadPoolExecutor<R>?
 
         init(owner: _FixedSizeThreadPoolExecutor<R>) {
@@ -76,11 +68,11 @@ class _FixedSizeThreadPoolExecutor<R>: AnyExecutor<R> {
         }
 
         override func main() {
-            while let owner = owner {
+            while let owner = owner, !isCancelled {
                 do {
                     let item = try owner.getItem()
-                    item.execute()
-                    owner.removeItem(item)
+                    var c: Cancelable = self
+                    item.execute(cancelable: &c)
                 }
                 catch {
                     break

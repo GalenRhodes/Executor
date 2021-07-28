@@ -1,9 +1,9 @@
 /*****************************************************************************************************************************//**
  *     PROJECT: Executor
- *    FILENAME: _GCDExecutor.swift
+ *    FILENAME: _Base.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: July 27, 2021
+ *        DATE: July 28, 2021
  *
   * Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided
  * that the above copyright notice and this permission notice appear in all copies.
@@ -18,28 +18,31 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-class _GCDExecutor<R>: _ExecutorBase<R> {
-    private lazy var queue: DispatchQueue = getQueue()
-    private var current: [Future<R>] = []
+class _ExecutorBase<R>: AnyExecutor<R> {
+    override init() { super.init() }
 
-    override func localShutdown() {
-        for f in current { f.cancel() }
-        current.removeAll()
-    }
-
-    func getQueue() -> DispatchQueue { DispatchQueue(label: uuid, qos: .userInitiated, attributes: [ .concurrent ], autoreleaseFrequency: .workItem) }
-
-    override func exec(callable c: @escaping Callable<R>) -> Future<R> {
-        let f = Future<R>(callable: c)
-        current <+ f
-        queue.async {
-            f.execute()
-            self.remove(f)
+    override func executeAsync(callable c: @escaping Callable<R>) throws -> Future<R> {
+        try lock.withLock {
+            guard activeState else { throw ExecutorError.ExecutorNotRunning }
+            return exec(callable: c)
         }
-        return f
     }
 
-    private func remove(_ future: Future<R>) { lock.withLock { current.removeAll { $0 === future } } }
+    override func executeAsync(callables c: [Callable<R>]) throws -> [Future<R>] {
+        try lock.withLock {
+            guard activeState else { throw ExecutorError.ExecutorNotRunning }
+            return c.map { exec(callable: $0) }
+        }
+    }
 
-    static func == (lhs: _GCDExecutor, rhs: _GCDExecutor) -> Bool { lhs === rhs }
+    override func shutdown() {
+        lock.withLock {
+            localShutdown()
+            activeState = false
+        }
+    }
+
+    func localShutdown() {}
+
+    func exec(callable c: @escaping Callable<R>) -> Future<R> { fatalError("exec(callable:) - Not Implemented.") }
 }

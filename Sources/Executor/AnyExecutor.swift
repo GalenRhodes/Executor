@@ -20,7 +20,8 @@ import Rubicon
 
 /*==============================================================================================================*/
 /// A base class that all `Executor`s should inherit from. Provides basic functionality that is shared by all of
-/// the stock `Executor`s.
+/// the stock `Executor`s. If you want to create your own Executor then create a class that inherits this class
+/// and override, at the very least, `executeAsync(callable:)` and `shutdown()`.
 ///
 open class AnyExecutor<R>: Executor, Hashable {
     //@f:0
@@ -46,12 +47,7 @@ open class AnyExecutor<R>: Executor, Hashable {
     /// - Returns: The `Future` for the `Callable`.
     /// - Throws: `ExecutorError.ExecutorNotRunning` if the executor is not active.
     ///
-    open func executeAsync(callable c: @escaping Callable<R>) throws -> Future<R> {
-        try lock.withLock {
-            guard activeState else { throw ExecutorError.ExecutorNotRunning }
-            return exec(callable: c)
-        }
-    }
+    open func executeAsync(callable c: @escaping Callable<R>) throws -> Future<R> { fatalError("executeAsync(callable:) - Not Implemented.") }
 
     /*==========================================================================================================*/
     /// Schedules a single `Callable` for execution and blocks until execution has completed either successfully,
@@ -75,14 +71,7 @@ open class AnyExecutor<R>: Executor, Hashable {
     /// - Returns: An array of `Future`s for each `Callable`.
     /// - Throws: `ExecutorError.ExecutorNotRunning` if the executor is not active.
     ///
-    open func executeAsync(callables c: [Callable<R>]) throws -> [Future<R>] {
-        try lock.withLock {
-            guard activeState else { throw ExecutorError.ExecutorNotRunning }
-            var out: [Future<R>] = []
-            for o in c { out <+ exec(callable: o) }
-            return out
-        }
-    }
+    open func executeAsync(callables c: [Callable<R>]) throws -> [Future<R>] { try c.map { try executeAsync(callable: $0) } }
 
     /*==========================================================================================================*/
     /// Schedules a array of `Callable`s for execution and blocks until execution of ALL of them has completed
@@ -104,18 +93,9 @@ open class AnyExecutor<R>: Executor, Hashable {
     /// canceled. After calling this method the property `isActive` will return `false` and attempting to execute
     /// any new `Callable`s will cause an `ExecutorError.ExecutorNotRunning` error to be thrown.
     ///
-    open func shutdown() {
-        lock.withLock {
-            localShutdown()
-            activeState = false
-        }
-    }
+    open func shutdown() { fatalError("shutdown() - Not Implemented.") }
 
     open func hash(into hasher: inout Hasher) { hasher.combine(uuid) }
-
-    func exec(callable c: @escaping Callable<R>) -> Future<R> { fatalError("exec(callable:) - Not Implemented.") }
-
-    func localShutdown() {}
 
     public static func == (lhs: AnyExecutor<R>, rhs: AnyExecutor<R>) -> Bool { lhs === rhs }
 }

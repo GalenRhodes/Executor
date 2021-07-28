@@ -84,7 +84,7 @@
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/CancelableFuture.html">CancelableFuture</a>
+                <a class="nav-group-task-link" href="../Protocols/Cancelable.html">Cancelable</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Executor.html">Executor</a>
@@ -117,12 +117,12 @@
               <div class="declaration">
                 <div class="language">
 
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Callable</span><span class="o">&lt;</span><span class="kt">R</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Protocols/CancelableFuture.html">CancelableFuture</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">R</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Callable</span><span class="o">&lt;</span><span class="kt">R</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="k">inout</span> <span class="kt"><a href="../Protocols/Cancelable.html">Cancelable</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">R</span></code></pre>
 
                 </div>
               </div>
             <p>Type alias for the closure passed to the <code><a href="../Protocols/Executor.html">Executor</a></code>. The single parameter will be an instance of an object
-that implements the <code><a href="../Protocols/CancelableFuture.html">CancelableFuture</a></code> protocol to allow the closure to check to see if the <code><a href="../Classes/Future.html">Future</a></code> was
+that implements the <code>CancelableFuture</code> protocol to allow the closure to check to see if the <code><a href="../Classes/Future.html">Future</a></code> was
 canceled and, as a result, it should cease execution.</p>
 
               <div class="slightly-smaller">

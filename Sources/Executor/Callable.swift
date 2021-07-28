@@ -23,4 +23,4 @@ import Rubicon
 /// that implements the `CancelableFuture` protocol to allow the closure to check to see if the `Future` was
 /// canceled and, as a result, it should cease execution.
 ///
-public typealias Callable<R> = (inout CancelableFuture) throws -> R
+public typealias Callable<R> = (inout Cancelable) throws -> R

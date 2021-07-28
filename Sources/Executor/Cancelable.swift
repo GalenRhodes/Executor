@@ -1,6 +1,6 @@
 /*****************************************************************************************************************************//**
  *     PROJECT: Executor
- *    FILENAME: _GCDExecutor.swift
+ *    FILENAME: Cancelable.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
  *        DATE: July 27, 2021
@@ -18,28 +18,19 @@ import Foundation
 import CoreFoundation
 import Rubicon
 
-class _GCDExecutor<R>: _ExecutorBase<R> {
-    private lazy var queue: DispatchQueue = getQueue()
-    private var current: [Future<R>] = []
+/*==============================================================================================================*/
+/// When the `Callable` is executed an instance of an object that implements this protocol will be passed to it as
+/// it's only argument. The `Callable` closure can use this to monitor the `isCanceled` flag to see if it should
+/// stop execution by throwing the error `ExecutorError.CallableCanceled`.
+///
+public protocol Cancelable {
+    /*==========================================================================================================*/
+    /// Returns `true` if the `Future` was canceled and, as a result, the `Callable` should cease execution.
+    ///
+    var isCancelled: Bool { get }
 
-    override func localShutdown() {
-        for f in current { f.cancel() }
-        current.removeAll()
-    }
-
-    func getQueue() -> DispatchQueue { DispatchQueue(label: uuid, qos: .userInitiated, attributes: [ .concurrent ], autoreleaseFrequency: .workItem) }
-
-    override func exec(callable c: @escaping Callable<R>) -> Future<R> {
-        let f = Future<R>(callable: c)
-        current <+ f
-        queue.async {
-            f.execute()
-            self.remove(f)
-        }
-        return f
-    }
-
-    private func remove(_ future: Future<R>) { lock.withLock { current.removeAll { $0 === future } } }
-
-    static func == (lhs: _GCDExecutor, rhs: _GCDExecutor) -> Bool { lhs === rhs }
+    /*==========================================================================================================*/
+    /// Cancle the `Future`.
+    ///
+    func cancel()
 }
